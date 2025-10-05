@@ -1727,6 +1727,83 @@ a {
     overflow: hidden;
 }
 
+/* Gallery View Items - Hiển thị ảnh */
+.ladi-gallery-view-item {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    pointer-events: none;
+}
+
+.ladi-gallery-view-item.selected {
+    opacity: 1 !important;
+    z-index: 10 !important;
+    pointer-events: auto;
+}
+
+/* Gallery Control Items - Thumbnails */
+.ladi-gallery-control-item {
+    width: 80px;
+    height: 80px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.ladi-gallery-control-item:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.ladi-gallery-control-item.selected {
+    border-color: rgb(255, 255, 255);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Override CSS cũ - Đảm bảo hiển thị ảnh */
+.ladi-gallery .ladi-gallery-view > .ladi-gallery-view-item {
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    perspective: none !important;
+}
+
+/* Hiển thị view items đúng cách */
+#GALLERY1 .ladi-gallery-view .ladi-gallery-view-item {
+    visibility: visible !important;
+    display: block !important;
+}
+
+#GALLERY1 .ladi-gallery-view .ladi-gallery-view-item:not(.selected) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+#GALLERY1 .ladi-gallery-view .ladi-gallery-view-item.selected {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10 !important;
+}
+
 #GALLERY1 .ladi-gallery .ladi-gallery-view .ladi-gallery-view-arrow, #GALLERY1 .ladi-gallery .ladi-gallery-control .ladi-gallery-control-arrow {
     background-image: url("data:image/svg+xml;utf8, %3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22rgba(255%2C%20255%2C%20255%2C%201)%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00015%200.585938L18.4144%2012.0002L7.00015%2023.4144L5.58594%2022.0002L15.5859%2012.0002L5.58594%202.00015L7.00015%200.585938Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 }
