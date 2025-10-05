@@ -71,10 +71,11 @@ if (document.readyState === 'loading') {
 }
 
 // ===================================
-// 1. COUNTDOWN TIMER
+// 1. COUNTDOWN TIMER - ĐếM NGƯỢC ĐẾN 30/11/2025
 // ===================================
 function updateCountdown() {
-    const weddingDate = new Date('2025-08-16T11:00:00').getTime();
+    // Ngày cưới: 30 tháng 11 năm 2025 lúc 11:00 sáng
+    const weddingDate = new Date('2025-11-30T11:00:00').getTime();
     const now = new Date().getTime();
     const distance = weddingDate - now;
     
@@ -92,10 +93,18 @@ function updateCountdown() {
             countdownItems[2].textContent = String(minutes).padStart(2, '0');
             countdownItems[3].textContent = String(seconds).padStart(2, '0');
         }
+        
+        // Log thông tin đếm ngược (chỉ log 1 lần khi khởi tạo)
+        if (!window.countdownLogged) {
+            console.log('⏰ Đếm ngược đến ngày cưới: 30/11/2025 11:00');
+            console.log(`📅 Còn lại: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`);
+            window.countdownLogged = true;
+        }
     } else {
         // Đám cưới đã diễn ra
         const countdownItems = document.querySelectorAll('.ladi-countdown-text span');
         countdownItems.forEach(item => item.textContent = '00');
+        console.log('🎉 Đám cưới đã diễn ra!');
     }
 }
 
