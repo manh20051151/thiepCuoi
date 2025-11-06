@@ -100,7 +100,11 @@ html {
     position: relative;
     margin: 0 auto;
     height: 100%;
+    width: 450px;
+    max-width: 100%;
 }
+
+
 
 #BOX1 {
     width: 450px;
@@ -216,7 +220,7 @@ linear 0s;
 #HEADLINE114 {
     width: 133px;
     top: 0px;
-    left: 69px;
+    left: 77px;
 }
 
 #HEADLINE114 > .ladi-headline {
@@ -229,7 +233,7 @@ linear 0s;
 }
 
 #HEADLINE4 {
-    width: 256px;
+    width: 288px;
     top: 137.9px;
     left: 0px;
 }
@@ -295,7 +299,7 @@ linear 0s;
 }
 
 #HEADLINE5, #HEADLINE6, #HEADLINE7, #HEADLINE8, #HEADLINE21, #HEADLINE23, #HEADLINE24, #HEADLINE25, #HEADLINE28 {
-    width: 418px;
+    width: 450px;
 }
 
 #HEADLINE5 > .ladi-headline {
@@ -349,7 +353,7 @@ linear 0s;
 
 #BOX3 {
     top: 296.4px;
-    left: 215px;
+    left: 231px;
 }
 
 #BOX3, #BOX6 {
@@ -395,7 +399,7 @@ linear 0s;
 }
 
 #HEADLINE9, #HEADLINE12 {
-    width: 227px;
+    width: 266px;
 }
 #IMAGE32 > .ladi-image > .ladi-image-background, #IMAGE6 > .ladi-image > .ladi-image-background, #IMAGE5, #IMAGE5 > .ladi-image > .ladi-image-background, #HEADLINE9, #HEADLINE12, #IMAGE7 > .ladi-image > .ladi-image-background, #HEADLINE18, #HEADLINE15, #IMAGE8 > .ladi-image > .ladi-image-background, #IMAGE9 > .ladi-image > .ladi-image-background, #IMAGE30 > .ladi-image > .ladi-image-background, #IMAGE31, #IMAGE31 > .ladi-image > .ladi-image-background, #BOX8, #IMAGE11 > .ladi-image > .ladi-image-background, #IMAGE22 > .ladi-image > .ladi-image-background, #IMAGE12 > .ladi-image > .ladi-image-background, #IMAGE13 > .ladi-image > .ladi-image-background, #HEADLINE70, #HEADLINE73, #HEADLINE76, #HEADLINE79, #IMAGE14 > .ladi-image > .ladi-image-background, #IMAGE15 > .ladi-image > .ladi-image-background, #IMAGE16 > .ladi-image > .ladi-image-background, #IMAGE17 > .ladi-image > .ladi-image-background, #IMAGE18 > .ladi-image > .ladi-image-background, #IMAGE19 > .ladi-image > .ladi-image-background, #IMAGE20 > .ladi-image > .ladi-image-background, #IMAGE21 > .ladi-image > .ladi-image-background, #BOX9, #IMAGE26 > .ladi-image > .ladi-image-background, #IMAGE25 > .ladi-image > .ladi-image-background, #IMAGE23 > .ladi-image > .ladi-image-background, #FORM_ITEM2, #BOX21, #IMAGE24 > .ladi-image > .ladi-image-background, #IMAGE41 > .ladi-image > .ladi-image-background, #POPUP1, #IMAGE37, #IMAGE37 > .ladi-image > .ladi-image-background, #BOX24, #POPUP2, #IMAGE40 > .ladi-image > .ladi-image-background, #BOX25, #GROUP36, #BOX26, #IMAGE38 > .ladi-image > .ladi-image-background, #BOX27, #IMAGE39 > .ladi-image > .ladi-image-background {
     top: 0px;
@@ -437,7 +441,7 @@ linear 0s;
 
 #HEADLINE14 {
     top: 93.499px;
-    left: 9px;
+    left: 16px;
 }
 #BOX6 {
     top: 423.899px;
@@ -479,7 +483,7 @@ linear 0s;
 }
 
 #HEADLINE115 {
-    width: 386px;
+    width: 410px;
     top: 787.899px;
     left: 16px;
 }
@@ -516,7 +520,7 @@ linear 0s;
     width: 224px;
     height: 67px;
     top: 59.3px;
-    left: 233px;
+    left: 253px;
 }
 #HEADLINE18, #HEADLINE15 {
     width: 151px;
@@ -556,12 +560,12 @@ linear 0s;
     width: 224px;
     height: 85px;
     top: 59.3px;
-    left: 55px;
+    left: 70px;
 }
 
 #IMAGE8 {
     top: 215.204px;
-    left: 122.5px;
+    left: 137.5px;
 }
 
 #IMAGE8, #IMAGE8 > .ladi-image > .ladi-image-background {
@@ -591,7 +595,7 @@ linear 0s;
 }
 
 #HEADLINE22, #HEADLINE29, #HEADLINE69, #HEADLINE97 {
-    width: 343px;
+    width: 363px;
 }
 
 #HEADLINE22 > .ladi-headline {
@@ -645,7 +649,7 @@ linear 0s;
 
 #HEADLINE25 {
     top: 531.8px;
-    left: 2px;
+    left: 0px;
 }
 
 #HEADLINE25 > .ladi-headline {
@@ -675,7 +679,7 @@ a {
     width: 278px;
     height: 62px;
     top: 569.3px;
-    left: 74px;
+    left: 93px;
 }
 
 #LINE2 {
@@ -781,7 +785,7 @@ a {
 
 #IMAGE9 {
     top: 0px;
-    left: 199.388px;
+    left: 212.388px;
 }
 
 #IMAGE9, #IMAGE9 > .ladi-image > .ladi-image-background {
@@ -1420,9 +1424,7 @@ a {
     left: 32.4999px;
 }
 
-#HEADLINE22, #HEADLINE29, #HEADLINE69, #HEADLINE97 {
-    width: 343px;
-}
+
 
 #HEADLINE97 > .ladi-headline {
     font-family: VVZOSGhVGFMSdGY;
@@ -2694,9 +2696,18 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     text-align: center;
 }
 
+#POPUP1 {
+    width: 100%;
+    height: 441px;
+    top: 0;
+    left: 0;
+}
+
 #POPUP2 {
     width: 100%;
     height: 585px;
+    top: 0;
+    left: 0;
 }
 
 #IMAGE40 {
@@ -2830,7 +2841,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 #BOX66 {
     top: 88px;
-    left: 112px;
+    left: 127px;
     width: 205px;
     height: 141px;
     position: absolute;

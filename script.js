@@ -498,26 +498,103 @@ function initMusicPlayer() {
 }
 
 // ===================================
-// 6. SCROLL ANIMATIONS
+// 6. SCROLL ANIMATIONS - TỪ TỪ VÀ MƯỢT MÀ
 // ===================================
 function initScrollAnimations() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.15,  // Element phải hiện 15% trong viewport
+        rootMargin: '0px 0px -80px 0px'  // Trigger khi cách đáy 80px
     };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.remove('ladi-animation-hidden');
-                entry.target.classList.add('ladi-animation-active');
+            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                // Trigger animation khi element vào viewport
+                const el = entry.target;
+                el.classList.remove('ladi-animation-hidden');
+                el.classList.add('ladi-animation-active', 'animated');
+                
+                // Bắt đầu animation
+                const animStyle = el.getAttribute('data-animation');
+                if (animStyle) {
+                    el.style.animation = animStyle;
+                }
             }
         });
     }, observerOptions);
     
-    // Observe tất cả elements có class ladi-animation-hidden
-    document.querySelectorAll('.ladi-animation-hidden').forEach(el => {
+    // Headlines - fadeInUp chậm rãi (không delay giữa các element)
+    document.querySelectorAll('[id^="HEADLINE"]').forEach((el) => {
+        el.classList.add('ladi-animation-hidden');
+        el.setAttribute('data-animation', 'fadeInUp 1.5s ease-out 0s both');
         observer.observe(el);
+    });
+    
+    // Images - zoomIn chậm
+    document.querySelectorAll('[id^="IMAGE"]').forEach((el) => {
+        if (!el.closest('#SECTION_POPUP')) {
+            el.classList.add('ladi-animation-hidden');
+            el.setAttribute('data-animation', 'zoomIn 2s ease-out 0s both');
+            observer.observe(el);
+        }
+    });
+    
+    // Boxes - fadeIn rất chậm
+    document.querySelectorAll('[id^="BOX"]').forEach((el, index) => {
+        if (!el.closest('#SECTION_POPUP')) {
+            el.classList.add('ladi-animation-hidden');
+            const anim = index % 2 === 0 ? 'fadeIn' : 'slideInUp';
+            el.setAttribute('data-animation', `${anim} 2s ease-out 0s both`);
+            observer.observe(el);
+        }
+    });
+    
+    // Groups - xen kẽ các hiệu ứng
+    document.querySelectorAll('[id^="GROUP"]').forEach((el, index) => {
+        if (!el.closest('#SECTION_POPUP') && el.id !== 'GROUP40') {
+            el.classList.add('ladi-animation-hidden');
+            const anims = ['fadeInLeft', 'fadeInRight', 'slideInUp'];
+            const anim = anims[index % 3];
+            el.setAttribute('data-animation', `${anim} 1.6s ease-out 0s both`);
+            observer.observe(el);
+        }
+    });
+    
+    // Buttons - bounceIn chậm
+    document.querySelectorAll('[id^="BUTTON"]').forEach((el) => {
+        el.classList.add('ladi-animation-hidden');
+        el.setAttribute('data-animation', 'bounceIn 1.8s ease-out 0s both');
+        observer.observe(el);
+    });
+    
+    // Forms - fadeInUp chậm
+    document.querySelectorAll('[id^="FORM"]').forEach((el) => {
+        el.classList.add('ladi-animation-hidden');
+        el.setAttribute('data-animation', 'fadeInUp 1.8s ease-out 0s both');
+        observer.observe(el);
+    });
+    
+    // Gallery - rotateIn rất chậm
+    document.querySelectorAll('[id^="GALLERY"]').forEach((el) => {
+        el.classList.add('ladi-animation-hidden');
+        el.setAttribute('data-animation', 'rotateIn 2.5s ease-out 0s both');
+        observer.observe(el);
+    });
+    
+    // Countdown - fadeInDown
+    document.querySelectorAll('[id^="COUNTDOWN"]').forEach((el) => {
+        el.classList.add('ladi-animation-hidden');
+        el.setAttribute('data-animation', 'fadeInDown 2s ease-out 0s both');
+        observer.observe(el);
+    });
+    
+    // Paragraphs - fadeInUp
+    document.querySelectorAll('[id^="PARAGRAPH"]').forEach((el) => {
+        if (!el.closest('#SECTION_POPUP')) {
+            el.classList.add('ladi-animation-hidden');
+            el.setAttribute('data-animation', 'fadeInUp 1.6s ease-out 0s both');
+            observer.observe(el);
+        }
     });
 }
 
