@@ -141,7 +141,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 
 
 #BOX1 > .ladi-box {
-    background-image: url(assets/1.jpg);
+    background-image: url(assets/SON_0960.JPG);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 50%;
@@ -368,10 +368,10 @@ linear 0s;
 }
 
 #BOX3 > .ladi-box {
-    background-image: url(assets/19.jpg);
-    background-size: cover;
+    background-image: url(assets/SON_2650.JPG);
+    background-size: 130%; 
     background-origin: content-box;
-    background-position: 50% 0%;
+    background-position: 50% 40%;
     background-repeat: repeat;
     background-attachment: scroll;
 }
@@ -445,8 +445,8 @@ linear 0s;
 }
 
 #BOX6 > .ladi-box {
-    background-image: url(assets/18.jpg);
-    background-size: cover;
+    background-image: url(assets/SON_2519.JPG);
+    background-size: 121%;
     background-origin: content-box;
     background-position: 50% 0%;
     background-repeat: repeat;
@@ -468,10 +468,10 @@ linear 0s;
 }
 
 #BOX7 > .ladi-box {
-    background-image: url(assets/3.jpg);
+    background-image: url(assets/SON_1384.JPG);
     background-size: cover;
     background-origin: content-box;
-    background-position: 50% 50%;
+    background-position: -20px 50%;
     background-repeat: repeat;
     background-attachment: scroll;
     box-shadow: rgb(96, 96, 96) 0px 7px 10px -5px;
@@ -817,10 +817,10 @@ a {
 }
 
 #BOX8 > .ladi-box {
-    background-image: url(assets/2.jpg);
+    background-image: url(assets/SON_1797.JPG);
     background-size: cover;
     background-origin: content-box;
-    background-position: 50% 0%;
+    background-position: 50% 50%;
     background-repeat: repeat;
     background-attachment: scroll;
     filter: brightness(60%);
@@ -1072,7 +1072,7 @@ a {
     font-family: TESQSSRUdVTEFSLlRURg;
     font-size: 13px;
     line-height: 1.6;
-    color: rgb(77, 51, 5);
+    color: rgb(255, 255, 255);
     text-align: center;
 }
 
@@ -1556,10 +1556,10 @@ a {
 }
 
 #BOX14 > .ladi-box {
-    background-image: url(assets/11.jpg);
+    background-image: url(assets/SON_1972.JPG);
     background-size: cover;
     background-origin: content-box;
-    background-position: 50% 0%;
+    background-position: -28px 0%;
     background-repeat: repeat;
     background-attachment: scroll;
     box-shadow: rgb(0, 0, 0) 0px 7px 20px -17px;
@@ -1587,8 +1587,8 @@ a {
 
 
 #BOX15 > .ladi-box {
-    background-image: url(/assets/9.jpg);
-    background-size: cover;
+    background-image: url(/assets/SON_1753.JPG);
+    background-size: 120%;
     background-origin: content-box;
     background-position: 50% 50%;
     background-repeat: repeat;
@@ -1606,7 +1606,7 @@ a {
 }
 
 #BOX16 > .ladi-box {
-    background-image: url(/assets/10.jpg);
+    background-image: url(/assets/SON_1936.JPG);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -1619,7 +1619,7 @@ a {
 }
 
 #BOX17 > .ladi-box {
-    background-image: url(/assets/11.jpg);
+    background-image: url(/assets/SON_1822.JPG);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -1635,10 +1635,10 @@ a {
 }
 
 #BOX18 > .ladi-box {
-    background-image: url(/assets/12.jpg);
+    background-image: url(/assets/SON_1782.JPG);
     background-size: cover;
     background-origin: content-box;
-    background-position: 50% 50%;
+    background-position: 50% 97%;
     background-repeat: repeat;
     background-attachment: scroll;
     box-shadow: rgba(0, 0, 0, 0.29) 0px 4px 9px -5px;
@@ -1802,6 +1802,53 @@ a {
     opacity: 1 !important;
     visibility: visible !important;
     z-index: 10 !important;
+}
+
+/* ===================================
+   NÚT ĐÓNG POPUP
+   =================================== */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 999999;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* Icon X cho nút đóng */
+.popup-close::before,
+.popup-close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 3px;
+    background-color: rgb(134, 105, 55);
+    border-radius: 2px;
+}
+
+.popup-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.popup-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Hover effect cho icon X */
+.popup-close:hover::before,
+.popup-close:hover::after {
+    background-color: rgb(200, 50, 50);
 }
 
 #GALLERY1 .ladi-gallery .ladi-gallery-view .ladi-gallery-view-arrow, #GALLERY1 .ladi-gallery .ladi-gallery-control .ladi-gallery-control-arrow {
@@ -2301,10 +2348,10 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #BOX22 > .ladi-box {
-    background-image: url("https://w.ladicdn.com/s750x700/6322a62f2dad980013bb5005/508556949_1281875350614059_85802724928187846_n-20250719104141-eu2fp.jpg");
-    background-size: cover;
+    background-image: url(/assets/SON_2582.JPG);
+    background-size: 120%;
     background-origin: content-box;
-    background-position: 50% 50%;
+    background-position: -55px 31%;
     background-repeat: repeat;
     background-attachment: scroll;
     filter: brightness(78%);
@@ -2350,7 +2397,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #IMAGE24 > .ladi-image > .ladi-image-background {
-    background-image: url("https://w.ladicdn.com/s750x550/6322a62f2dad980013bb5005/untitled-1-20250703094359-cb7zx.png");
+    background-image: url(assets/logo.webp);
 }
 #HEADLINE107 {
     width: 276px;
@@ -2648,7 +2695,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #POPUP2 {
-    width: 420px;
+    width: 100%;
     height: 585px;
 }
 
@@ -2658,7 +2705,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #BOX25 > .ladi-box {
-    background-image: url("https://w.ladicdn.com/s750x600/6322a62f2dad980013bb5005/514142038_1292661479535446_7381273908202650464_n-20250719105100-ezhc-.jpg");
+    background-image: url(assets/SON_2615.JPG);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -2696,7 +2743,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     left: 18.646px;
 }
 #IMAGE38 > .ladi-image > .ladi-image-background {
-    background-image: url("https://w.ladicdn.com/s450x450/6322a62f2dad980013bb5005/screenshot-2025-05-17-175153-20250517105200-byb_5.jpg");
+    background-image: url(assets/bank2.jpg);
 }
 
 #IMAGE38, #IMAGE38 > .ladi-image > .ladi-image-background, #IMAGE39, #IMAGE39 > .ladi-image > .ladi-image-background {
@@ -2735,7 +2782,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #IMAGE39 > .ladi-image > .ladi-image-background {
-    background-image: url("https://w.ladicdn.com/s450x450/6322a62f2dad980013bb5005/screenshot-2025-05-17-175445-20250517105455-jszwj.jpg");
+    background-image: url(assets/bank2.jpg);
 }
 
 #HEADLINE134 {
@@ -2781,3 +2828,21 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     z-index: 9000000080;
     background: rgba(0,0,0,.5);
 }
+#BOX66 {
+    top: 88px;
+    left: 112px;
+    width: 205px;
+    height: 141px;
+    position: absolute;
+}
+
+#BOX66 > .ladi-box {
+    background-image: url(assets/logo.webp);
+    background-size: contain;      /* hoặc cover nếu bạn muốn hình đầy khung */
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    /* Sửa lỗi căn chưa đúng */
+    background-origin: border-box;
+}
+

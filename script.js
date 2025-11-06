@@ -2,7 +2,7 @@
 // THIỆP CƯỚI - MINH TRƯỜNG & PHƯƠNG QUYÊN
 // ===================================
 
-console.log('💍 Chào mừng đến với thiệp cưới của Minh Trường & Phương Quyên! 🎊');
+// console.log('💍 Chào mừng đến với thiệp cưới của Minh Trường & Phương Quyên! 🎊');
 
 // ===================================
 // 0. LAZYLOAD FUNCTION (from HTML)
@@ -96,8 +96,8 @@ function updateCountdown() {
         
         // Log thông tin đếm ngược (chỉ log 1 lần khi khởi tạo)
         if (!window.countdownLogged) {
-            console.log('⏰ Đếm ngược đến ngày cưới: 30/11/2025 11:00');
-            console.log(`📅 Còn lại: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`);
+            // console.log('⏰ Đếm ngược đến ngày cưới: 30/11/2025 11:00');
+            // console.log(`📅 Còn lại: ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`);
             window.countdownLogged = true;
         }
     } else {
@@ -127,15 +127,15 @@ function initGallery() {
     const leftArrow = gallery.querySelector('.ladi-gallery-view-arrow-left');
     const rightArrow = gallery.querySelector('.ladi-gallery-view-arrow-right');
     
-    console.log(`🖼️ Tìm thấy ${viewItems.length} view items và ${controlItems.length} control items`);
+    // console.log(`🖼️ Tìm thấy ${viewItems.length} view items và ${controlItems.length} control items`);
     
     let currentIndex = 0;
-    const totalImages = 10; // Số lượng ảnh trong gallery
+    const totalImages = 5; // Số lượng ảnh trong gallery
     
     // Danh sách ảnh cho gallery
     const imageFiles = [
-        'assets/5.jpg', 'assets/6.jpg', 'assets/7.jpg', 'assets/8.jpg', 'assets/9.jpg',
-        'assets/10.jpg', 'assets/12.jpg', 'assets/13.jpg', 'assets/14.jpg', 'assets/15.jpg'
+        'assets/SON_1266.JPG', 'assets/SON_1061.JPG', 'assets/SON_0671.JPG',
+        'assets/SON_1195.JPG', 'assets/SON_1008.JPG'
     ];
     
     // Set background images cho view items (slide chính)
@@ -154,7 +154,7 @@ function initGallery() {
                 left: 0 !important;
                 display: block !important;
             `);
-            console.log(`✅ Đã load ảnh ${index + 1}: ${imageFiles[index]}`);
+            // console.log(`✅ Đã load ảnh ${index + 1}: ${imageFiles[index]}`);
         }
     });
     
@@ -174,15 +174,15 @@ function initGallery() {
         viewItems[0].style.opacity = '1';
         viewItems[0].style.visibility = 'visible';
         viewItems[0].style.zIndex = '10';
-        console.log('🔥 Hiển thị ảnh đầu tiên:', imageFiles[0]);
+        // console.log('🔥 Hiển thị ảnh đầu tiên:', imageFiles[0]);
     }
     if (controlItems.length > 0) {
         controlItems[0].classList.add('selected');
     }
     
-    console.log('✨ Gallery khởi tạo thành công!');
-    console.log('📌 Số lượng view items:', viewItems.length);
-    console.log('📌 Số lượng control items:', controlItems.length);
+    // console.log('✨ Gallery khởi tạo thành công!');
+    // console.log('📌 Số lượng view items:', viewItems.length);
+    // console.log('📌 Số lượng control items:', controlItems.length);
     
     function showImage(index) {
         // Fade out tất cả ảnh
@@ -212,7 +212,7 @@ function initGallery() {
         currentIndex = index;
         gallery.setAttribute('data-current', index);
         
-        console.log(`🔄 Hiển thị ảnh ${index + 1}/${totalImages}: ${imageFiles[index]}`);
+        // console.log(`🔄 Hiển thị ảnh ${index + 1}/${totalImages}: ${imageFiles[index]}`);
     }
     
     // Arrow navigation
@@ -253,8 +253,13 @@ function initGallery() {
 }
 
 // ===================================
-// 3. FORM SUBMISSION
+// 3. FORM SUBMISSION - GỬI DỮ LIỆU ĐẾN GOOGLE SHEETS
 // ===================================
+
+// URL Google Apps Script Web App
+// Thay đổi URL này sau khi deploy Apps Script
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUc0L4SrvipRsy43M6iYZuXiMQvVT21LO05cYu7En5iYHc7AC2L6fGYNFYn2wwl9vx4w/exec';
+
 function initForm() {
     const form = document.querySelector('#FORM2 form');
     const submitButton = document.getElementById('BUTTON2');
@@ -262,7 +267,7 @@ function initForm() {
     
     if (!form || !submitButton) return;
     
-    submitButton.addEventListener('click', (e) => {
+    submitButton.addEventListener('click', async (e) => {
         e.preventDefault();
         
         // Lấy dữ liệu form
@@ -288,33 +293,107 @@ function initForm() {
             return;
         }
         
-        // Hiển thị popup cảm ơn
-        if (popup) {
-            popup.style.display = 'block';
-            popup.style.opacity = '0';
-            setTimeout(() => {
-                popup.style.transition = 'opacity 0.3s';
-                popup.style.opacity = '1';
-            }, 10);
-            
-            // Tự động đóng popup sau 3 giây
-            setTimeout(() => {
-                closePopup('POPUP1');
-            }, 3000);
-        }
-        
-        // Reset form
-        form.reset();
-        
-        // Log data (có thể gửi đến server)
-        console.log('Form submitted:', {
+        // Tạo object dữ liệu
+        const formData = {
             name: nameInput.value,
             message: messageInput.value,
             attending: attendSelect.value,
             guests: guestsSelect ? guestsSelect.value : '',
             side: sideSelect ? sideSelect.value : ''
-        });
+        };
+        
+        // console.log('📤 Đang gửi dữ liệu...', formData);
+        
+        // Hiển thị loading trên nút
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Đang gửi...';
+        submitButton.style.opacity = '0.6';
+        submitButton.style.pointerEvents = 'none';
+        
+        // Gửi dữ liệu đến Google Sheets
+        try {
+            const response = await sendToGoogleSheets(formData);
+            
+            if (response.status === 'success') {
+                // console.log('✅ Gửi thành công!', response);
+                
+                // Hiển thị popup cảm ơn
+                if (popup) {
+                    popup.style.display = 'block';
+                    popup.style.opacity = '0';
+                    setTimeout(() => {
+                        popup.style.transition = 'opacity 0.3s';
+                        popup.style.opacity = '1';
+                    }, 10);
+                    
+                    // Tự động đóng popup sau 3 giây
+                    setTimeout(() => {
+                        closePopup('POPUP1');
+                    }, 3000);
+                }
+                
+                // Reset form
+                form.reset();
+            } else {
+                console.error('❌ Lỗi:', response.message);
+                alert('Có lỗi xảy ra. Vui lòng thử lại!');
+            }
+        } catch (error) {
+            console.error('❌ Lỗi kết nối:', error);
+            
+            // Nếu không có URL Google Sheets, vẫn hiển thị popup
+            if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                console.warn('⚠️ Chưa cấu hình Google Sheets URL');
+                alert('📢 Chức năng lưu dữ liệu chưa được cấu hình.\nXem hướng dẫn trong file google-apps-script.gs');
+            } else {
+                alert('Không thể kết nối đến Google Sheets. Vui lòng kiểm tra lại!');
+            }
+            
+            // Vẫn hiển thị popup cảm ơn
+            if (popup) {
+                popup.style.display = 'block';
+                popup.style.opacity = '0';
+                setTimeout(() => {
+                    popup.style.transition = 'opacity 0.3s';
+                    popup.style.opacity = '1';
+                }, 10);
+                
+                setTimeout(() => {
+                    closePopup('POPUP1');
+                }, 3000);
+            }
+            
+            form.reset();
+        } finally {
+            // Khôi phục nút
+            submitButton.textContent = originalText;
+            submitButton.style.opacity = '1';
+            submitButton.style.pointerEvents = 'auto';
+        }
     });
+}
+
+// Hàm gửi dữ liệu đến Google Sheets
+async function sendToGoogleSheets(data) {
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Quan trọng cho Google Apps Script
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        // Với mode: 'no-cors', không thể đọc response
+        // Chỉ có thể biết request đã được gửi
+        return {
+            status: 'success',
+            message: 'Đã gửi dữ liệu thành công'
+        };
+    } catch (error) {
+        throw error;
+    }
 }
 
 // ===================================
@@ -364,6 +443,34 @@ function initGiftButton() {
 }
 
 // ===================================
+// NÚT ĐÓNG POPUP
+// ===================================
+function initPopupCloseButtons() {
+    // Tìm tất cả nút đóng popup
+    const closeButtons = document.querySelectorAll('.popup-close');
+    
+    // console.log(`🔘 Tìm thấy ${closeButtons.length} nút đóng popup`);
+    
+    closeButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Ngăn sự kiện lan truyền
+            
+            // Tìm popup chứa nút đóng này
+            const popup = button.closest('.ladi-element[id^="POPUP"]');
+            
+            if (popup) {
+                const popupId = popup.id;
+                // console.log(`❌ Đóng popup: ${popupId}`);
+                closePopup(popupId);
+            }
+        });
+        
+        // Thêm hiệu ứng hover
+        button.style.cursor = 'pointer';
+    });
+}
+
+// ===================================
 // 5. MUSIC PLAYER
 // ===================================
 function initMusicPlayer() {
@@ -386,7 +493,7 @@ function initMusicPlayer() {
                 musicButton.style.opacity = '0.5';
             } else {
                 audio.play().catch(e => {
-                    console.log('Không thể phát nhạc tự động:', e);
+                    // console.log('Không thể phát nhạc tự động:', e);
                 });
                 musicButton.style.opacity = '1';
             }
@@ -491,7 +598,7 @@ function initMobileAdjustments() {
 // ===================================
 function highlightWeddingDate() {
     // Highlight ngày 16 trong calendar
-    const day16 = document.getElementById('HEADLINE46');
+    const day16 = document.getElementById('HEADLINE47');
     if (day16) {
         day16.style.backgroundColor = 'rgb(134, 105, 55)';
         day16.style.borderRadius = '50%';
@@ -507,12 +614,13 @@ function highlightWeddingDate() {
 // KHỞI TẠO TẤT CẢ CHỨC NĂNG
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🎊 Đang khởi tạo website...');
+    // console.log('🎊 Đang khởi tạo website...');
     
     // Khởi tạo các chức năng
     initGallery();
     initForm();
     initGiftButton();
+    initPopupCloseButtons(); // Thêm nút đóng popup
     initMusicPlayer();
     initScrollAnimations();
     initSmoothScroll();
@@ -521,8 +629,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileAdjustments();
     highlightWeddingDate();
     
-    console.log('✅ Website đã sẵn sàng!');
-    console.log('💝 Chúc mừng Minh Trường & Phương Quyên!');
+    // console.log('✅ Website đã sẵn sàng!');
+    // console.log('💝 Chúc mừng Minh Trường & Phương Quyên!');
 });
 
 // ===================================
