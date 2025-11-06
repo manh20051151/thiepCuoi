@@ -134,8 +134,11 @@ function initGallery() {
     
     // Danh sách ảnh cho gallery
     const imageFiles = [
-        'assets/SON_1266.JPG', 'assets/SON_1061.JPG', 'assets/SON_0671.JPG',
-        'assets/SON_1195.JPG', 'assets/SON_1008.JPG'
+        'https://i.pinimg.com/736x/bf/90/f3/bf90f368a0b7fbd22459abd858f07f3a.jpg', 
+        'https://i.pinimg.com/736x/5f/73/90/5f7390302602feaec0d88386fbb2bbb3.jpg',
+         'https://i.pinimg.com/736x/f8/50/8d/f8508d6c6e7aa437d617757422c2d582.jpg',
+        'https://i.pinimg.com/736x/df/3a/2b/df3a2bc5dfa13573a7afbaed8d5646b2.jpg', 
+        'https://i.pinimg.com/736x/cb/9d/57/cb9d57d992f464ad3a3b9fe5b7797bdb.jpg'
     ];
     
     // Set background images cho view items (slide chính)
@@ -508,17 +511,26 @@ function initScrollAnimations() {
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                // Trigger animation khi element vào viewport
-                const el = entry.target;
+            const el = entry.target;
+            const animStyle = el.getAttribute('data-animation');
+            
+            if (entry.isIntersecting) {
+                // Element vào viewport - hiện hiệu ứng
                 el.classList.remove('ladi-animation-hidden');
-                el.classList.add('ladi-animation-active', 'animated');
+                el.classList.add('ladi-animation-active');
                 
-                // Bắt đầu animation
-                const animStyle = el.getAttribute('data-animation');
                 if (animStyle) {
                     el.style.animation = animStyle;
                 }
+            } else {
+                // Element ra khỏi viewport - reset để chuẩn bị cho lần scroll tiếp theo
+                el.classList.remove('ladi-animation-active');
+                el.classList.add('ladi-animation-hidden');
+                
+                // Reset animation để có thể chạy lại
+                el.style.animation = 'none';
+                // Force reflow để reset animation
+                void el.offsetWidth;
             }
         });
     }, observerOptions);

@@ -145,7 +145,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, bo
 
 
 #BOX1 > .ladi-box {
-    background-image: url(assets/SON_0960.JPG);
+    background-image: url(https://i.pinimg.com/1200x/7c/75/08/7c75082137b2a6cc1e9985121d330423.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 50%;
@@ -189,7 +189,7 @@ linear 0s;
     left: 5px;
 }
 #HEADLINE3, #PARAGRAPH1 {
-    width: 390px;
+    width: 450px;
 }
 
 #HEADLINE3 > .ladi-headline {
@@ -372,7 +372,7 @@ linear 0s;
 }
 
 #BOX3 > .ladi-box {
-    background-image: url(assets/SON_2650.JPG);
+    background-image: url(https://i.pinimg.com/736x/e1/31/86/e13186f3b4a8498a06e6997aa32a8821.jpg);
     background-size: 130%; 
     background-origin: content-box;
     background-position: 50% 40%;
@@ -449,7 +449,7 @@ linear 0s;
 }
 
 #BOX6 > .ladi-box {
-    background-image: url(assets/SON_2519.JPG);
+    background-image: url(https://i.pinimg.com/736x/d0/1b/1a/d01b1a3576608615adf23a86c232054b.jpg);
     background-size: 121%;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -472,7 +472,7 @@ linear 0s;
 }
 
 #BOX7 > .ladi-box {
-    background-image: url(assets/SON_1384.JPG);
+    background-image: url(https://i.pinimg.com/736x/22/52/91/22529158ec6145baa6e5f724be238c00.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: -20px 50%;
@@ -821,7 +821,7 @@ a {
 }
 
 #BOX8 > .ladi-box {
-    background-image: url(assets/SON_1797.JPG);
+    background-image: url(https://i.pinimg.com/736x/5b/58/ac/5b58ac89ea408d11eb9742bc04e8e1aa.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 50%;
@@ -1558,7 +1558,7 @@ a {
 }
 
 #BOX14 > .ladi-box {
-    background-image: url(assets/SON_1972.JPG);
+    background-image: url(https://i.pinimg.com/736x/5a/00/c2/5a00c2e87fc252d1822af3be292e6592.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: -28px 0%;
@@ -1589,7 +1589,7 @@ a {
 
 
 #BOX15 > .ladi-box {
-    background-image: url(/assets/SON_1753.JPG);
+    background-image: url(https://i.pinimg.com/736x/f3/31/6f/f3316fccc64009be397ed05791c2e7d5.jpg);
     background-size: 120%;
     background-origin: content-box;
     background-position: 50% 50%;
@@ -1608,7 +1608,7 @@ a {
 }
 
 #BOX16 > .ladi-box {
-    background-image: url(/assets/SON_1936.JPG);
+    background-image: url(https://i.pinimg.com/736x/91/59/f9/9159f9556d8feb98416be59a7c8f4470.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -1621,7 +1621,7 @@ a {
 }
 
 #BOX17 > .ladi-box {
-    background-image: url(/assets/SON_1822.JPG);
+    background-image: url(https://i.pinimg.com/736x/c7/12/e4/c712e44a119a882e88ac2ad6a4ef5be6.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -1637,7 +1637,7 @@ a {
 }
 
 #BOX18 > .ladi-box {
-    background-image: url(/assets/SON_1782.JPG);
+    background-image: url(https://i.pinimg.com/736x/a5/17/22/a51722f76d567ffdd4ff4cae6346a0df.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 97%;
@@ -2350,7 +2350,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #BOX22 > .ladi-box {
-    background-image: url(/assets/SON_2582.JPG);
+    background-image: url(https://i.pinimg.com/736x/e5/e5/d6/e5e5d6a88cdba0ac8378819adec3d5dc.jpg);
     background-size: 120%;
     background-origin: content-box;
     background-position: -55px 31%;
@@ -2654,7 +2654,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     height: 287px;
 }
 #BOX24 > .ladi-box {
-    background-image: url(assets/SON_2603.JPG);
+    background-image: url(https://i.pinimg.com/736x/63/86/48/6386485655b6fb728d7e696acbc8b898.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 30%;
@@ -2683,9 +2683,9 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #PARAGRAPH2 {
-    width: 177px;
+    width: 450px;
     top: 363.5px;
-    left: 121.5px;
+    /* left: 121.5px; */
 }
 
 #PARAGRAPH2 > .ladi-paragraph {
@@ -2716,7 +2716,7 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 
 #BOX25 > .ladi-box {
-    background-image: url(assets/SON_2615.JPG);
+    background-image: url(https://i.pinimg.com/736x/dc/9f/f7/dc9ff730a9865fc778eb335b28cb8554.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
