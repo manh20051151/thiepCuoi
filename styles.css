@@ -2652,10 +2652,10 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     height: 287px;
 }
 #BOX24 > .ladi-box {
-    background-image: url("https://w.ladicdn.com/s750x600/6322a62f2dad980013bb5005/508451689_1281875587280702_3577773877656683945_n-20250719105100-uzbtm.jpg");
+    background-image: url(assets/SON_2603.JPG);
     background-size: cover;
     background-origin: content-box;
-    background-position: 50% 0%;
+    background-position: 50% 30%;
     background-repeat: repeat;
     background-attachment: scroll;
 }

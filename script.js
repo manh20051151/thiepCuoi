@@ -325,11 +325,6 @@ function initForm() {
                         popup.style.transition = 'opacity 0.3s';
                         popup.style.opacity = '1';
                     }, 10);
-                    
-                    // Tự động đóng popup sau 3 giây
-                    setTimeout(() => {
-                        closePopup('POPUP1');
-                    }, 3000);
                 }
                 
                 // Reset form
@@ -357,10 +352,6 @@ function initForm() {
                     popup.style.transition = 'opacity 0.3s';
                     popup.style.opacity = '1';
                 }, 10);
-                
-                setTimeout(() => {
-                    closePopup('POPUP1');
-                }, 3000);
             }
             
             form.reset();
@@ -431,15 +422,19 @@ function initGiftButton() {
         });
     }
     
-    // Đóng popup khi click ra ngoài
-    document.querySelectorAll('.ladi-popup-background').forEach(bg => {
-        bg.addEventListener('click', (e) => {
-            const popup = e.target.closest('.ladi-element');
-            if (popup) {
-                closePopup(popup.id);
+    // Đóng popup khi click vào background - CHỈ cho POPUP2 (popup quà mừng)
+    const popup2Bg = popup2 ? popup2.querySelector('.ladi-popup-background') : null;
+    if (popup2Bg) {
+        popup2Bg.addEventListener('click', (e) => {
+            // Chỉ đóng khi click chính xác vào background
+            if (e.target === popup2Bg) {
+                closePopup('POPUP2');
             }
         });
-    });
+    }
+    
+    // POPUP1 (popup cảm ơn) KHÔNG có background close để tránh đóng nhầm
+    // Chỉ đóng bằng nút X hoặc timeout
 }
 
 // ===================================
