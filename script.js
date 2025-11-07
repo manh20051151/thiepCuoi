@@ -5,6 +5,53 @@
 // console.log('💍 Chào mừng đến với thiệp cưới của Minh Trường & Phương Quyên! 🎊');
 
 // ===================================
+// AUTO SCALE - TỰ ĐỘNG SCALE THEO CHIỀU RỘNG MÀN HÌNH
+// ===================================
+(function() {
+    const DESIGN_WIDTH = 450; // Chiều rộng thiết kế gốc
+
+    function applyScale() {
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const scale = vw / DESIGN_WIDTH;
+
+        const wrapper = document.querySelector('.ladi-wraper');
+        if (!wrapper) return;
+
+        // Chặn scroll ngang toàn trang
+        document.documentElement.style.overflowX = 'hidden';
+        document.body.style.overflowX = 'hidden';
+
+        // Cố định kích thước gốc và scale
+        wrapper.style.width = DESIGN_WIDTH + 'px';
+        wrapper.style.transform = 'scale(' + scale + ')';
+        
+        // console.log('📱 Scale applied:', scale.toFixed(2), 'Viewport:', vw + 'px');
+    }
+
+    // Gọi khi load, resize, xoay màn hình
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyScale);
+    } else {
+        applyScale();
+    }
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(applyScale, 100);
+    });
+    
+    window.addEventListener('orientationchange', function() {
+        setTimeout(applyScale, 300);
+    });
+    
+    // Gọi lại sau khi tất cả images đã load
+    window.addEventListener('load', function() {
+        setTimeout(applyScale, 200);
+    });
+})();
+
+// ===================================
 // 0. LAZYLOAD FUNCTION (from HTML)
 // ===================================
 window.lazyload_run = function(dom, is_first, check_dom_rect) {
