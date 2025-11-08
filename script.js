@@ -595,28 +595,83 @@ function initPopupCloseButtons() {
 function initMusicPlayer() {
     const musicButton = document.getElementById('GROUP40');
     let isPlaying = false;
-    let audio = null;
+    let autoplayPending = false;
     
+    // Khởi tạo audio ngay khi vào trang để thử autoplay
+    const audio = new Audio('assets/music.mp3');
+    audio.loop = true;
+    audio.preload = 'auto';
+    audio.volume = 0.6; // âm lượng vừa phải
+    audio.setAttribute('playsinline', 'true'); // iOS Safari
+    audio.setAttribute('autoplay', 'true');
+
+    const updateUI = () => {
+        if (!musicButton) return;
+        musicButton.style.cursor = 'pointer';
+        musicButton.style.opacity = isPlaying ? '1' : '0.5';
+    };
+
+    const tryPlay = () => {
+        return audio.play().then(() => {
+            isPlaying = true;
+            autoplayPending = false;
+            updateUI();
+        }).catch(() => {
+            // Trình duyệt chặn autoplay khi chưa có tương tác người dùng
+            autoplayPending = true;
+            updateUI();
+        });
+    };
+
+    // Nếu source lỗi (thiếu file), log gợi ý
+    audio.onerror = () => {
+        console.warn('Không thể tải assets/music.mp3. Hãy thêm file nhạc vào thư mục assets.');
+    };
+
+    // Thử autoplay ngay khi load
+    tryPlay();
+
+    // Nếu bị chặn autoplay, phát ngay sau tương tác đầu tiên của người dùng
+    const onFirstInteract = () => {
+        if (autoplayPending && !isPlaying) {
+            tryPlay().finally(() => {
+                if (!autoplayPending) {
+                    removeInteractionListeners();
+                }
+            });
+        }
+    };
+
+    const addInteractionListeners = () => {
+        ['click', 'touchstart', 'keydown'].forEach(evt => document.addEventListener(evt, onFirstInteract, { once: true }));
+        document.addEventListener('visibilitychange', onFirstInteract, { once: true });
+    };
+    const removeInteractionListeners = () => {
+        ['click', 'touchstart', 'keydown'].forEach(evt => document.removeEventListener(evt, onFirstInteract, { once: true }));
+        document.removeEventListener('visibilitychange', onFirstInteract, { once: true });
+    };
+
+    // Thiết lập listener nếu autoplay bị chặn
+    addInteractionListeners();
+
     if (musicButton) {
         musicButton.style.cursor = 'pointer';
-        
-        musicButton.addEventListener('click', () => {
-            if (!audio) {
-                // Tạo audio element (thêm file nhạc của bạn vào assets)
-                audio = new Audio('assets/music.mp3'); // Bạn cần thêm file nhạc
-                audio.loop = true;
+        musicButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (autoplayPending && !isPlaying) {
+                // Nếu đang chờ autoplay, ưu tiên phát thay vì toggle
+                tryPlay().finally(() => {
+                    if (!autoplayPending) removeInteractionListeners();
+                });
+                return;
             }
-            
             if (isPlaying) {
                 audio.pause();
-                musicButton.style.opacity = '0.5';
+                isPlaying = false;
             } else {
-                audio.play().catch(e => {
-                    // console.log('Không thể phát nhạc tự động:', e);
-                });
-                musicButton.style.opacity = '1';
+                tryPlay();
             }
-            isPlaying = !isPlaying;
+            updateUI();
         });
     }
 }
@@ -636,23 +691,19 @@ function initScrollAnimations() {
             const animStyle = el.getAttribute('data-animation');
             
             if (entry.isIntersecting) {
-                // Element vào viewport - hiện hiệu ứng
+                // Element vào viewport - hiện hiệu ứng (chỉ chạy 1 lần để tránh nháy)
                 el.classList.remove('ladi-animation-hidden');
                 el.classList.add('ladi-animation-active');
-                
-                if (animStyle) {
+
+                // Chỉ set animation nếu chưa từng chạy
+                if (animStyle && el.dataset.animated !== 'true') {
                     el.style.animation = animStyle;
                 }
-            } else {
-                // Element ra khỏi viewport - reset để chuẩn bị cho lần scroll tiếp theo
-                el.classList.remove('ladi-animation-active');
-                el.classList.add('ladi-animation-hidden');
-                
-                // Reset animation để có thể chạy lại
-                el.style.animation = 'none';
-                // Force reflow để reset animation
-                void el.offsetWidth;
+                // Đánh dấu đã animate và ngừng quan sát để tránh flicker khi lắc quanh ngưỡng
+                el.dataset.animated = 'true';
+                observer.unobserve(el);
             }
+            // Không reset animation khi ra khỏi viewport để tránh chớp nháy
         });
     }, observerOptions);
     
