@@ -106,6 +106,12 @@
     }
 }
 
+/* Nhịp tim cho ngày 30 (trái tim) */
+@keyframes heartPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 0 rgba(134,105,55,0)); }
+    50%      { transform: translate(-50%, -50%) scale(1.18); filter: drop-shadow(0 6px 12px rgba(134,105,55,0.3)); }
+}
+
 @keyframes flipInX {
     from {
         opacity: 0;
@@ -134,6 +140,46 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Nhấn mạnh nút Chỉ đường (IMAGE9 + HEADLINE28) – mạnh hơn */
+@keyframes pulseStrong {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(134, 105, 55, 0));
+    }
+    45% {
+        transform: scale(1.16);
+        filter: drop-shadow(0 6px 14px rgba(134, 105, 55, 0.35));
+    }
+    55% {
+        transform: scale(1.2);
+        filter: drop-shadow(0 10px 20px rgba(134, 105, 55, 0.4));
+    }
+}
+
+#IMAGE9 .ladi-image {
+    transform-origin: center;
+    will-change: transform, filter;
+    animation: pulseStrong 1.2s cubic-bezier(.175,.885,.32,1.275) .1s infinite;
+}
+#HEADLINE28 .ladi-headline {
+    display: inline-block;
+    transform-origin: center;
+    will-change: transform, filter;
+    animation: pulseStrong 1.2s cubic-bezier(.175,.885,.32,1.275) .1s infinite;
+}
+/* Hover nhanh hơn một chút */
+#GROUP30:hover #IMAGE9 .ladi-image,
+#GROUP30:hover #HEADLINE28 .ladi-headline {
+    animation-duration: 0.85s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #IMAGE9 .ladi-image,
+    #HEADLINE28 .ladi-headline {
+        animation: none !important;
     }
 }
 

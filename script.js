@@ -853,16 +853,18 @@ function initMobileAdjustments() {
 // 11. CALENDAR HIGHLIGHT
 // ===================================
 function highlightWeddingDate() {
-    // Highlight ngày 16 trong calendar
-    const day16 = document.getElementById('HEADLINE47');
-    if (day16) {
-        day16.style.backgroundColor = 'rgb(134, 105, 55)';
-        day16.style.borderRadius = '50%';
-        day16.style.padding = '5px';
-        const headline = day16.querySelector('.ladi-headline');
-        if (headline) {
-            headline.style.color = 'rgb(255, 255, 255)';
-        }
+    // Highlight ngày 30 bằng nền trái tim có hiệu ứng nhúng
+    const dayEl = document.getElementById('HEADLINE47');
+    if (!dayEl) return;
+
+    // Gắn class để dùng CSS tạo trái tim và hiệu ứng
+    dayEl.classList.add('heart-badge');
+
+    // Màu chữ trắng, đậm để nổi trên nền
+    const headline = dayEl.querySelector('.ladi-headline');
+    if (headline) {
+        headline.style.color = '#ffffff';
+        headline.style.fontWeight = '700';
     }
 }
 

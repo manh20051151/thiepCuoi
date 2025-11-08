@@ -803,6 +803,31 @@ a {
     left: 73px;
 }
 
+/* ============ HEART BADGE FOR DAY 30 ============ */
+#HEADLINE47.heart-badge {
+    position: relative;
+    overflow: visible;
+}
+#HEADLINE47.heart-badge .ladi-headline {
+    position: relative;
+    z-index: 2;
+}
+#HEADLINE47.heart-badge::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40px;
+    height: 34px;
+    transform: translate(-50%, -50%);
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 29.6'><path fill='%23866937' d='M23.6 0c-3.4 0-6.4 2.7-7.6 5.1C14.8 2.7 11.8 0 8.4 0 3.8 0 0 3.8 0 8.4c0 9.1 16 21.2 16 21.2s16-12.1 16-21.2C32 3.8 28.2 0 23.6 0z'/></svg>") no-repeat center / contain;
+    z-index: 1;
+    pointer-events: none;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    animation: heartPulse 1.4s ease-in-out infinite;
+}
+
 #IMAGE30, #IMAGE30 > .ladi-image > .ladi-image-background {
     width: 38px;
     height: 38px;
@@ -975,8 +1000,8 @@ a {
 }
 
 #HEADLINE47 {
-    top: 294.95px;
-    left: 352px;
+    top: 301.95px;
+    left: 343px;
 }
 
 #HEADLINE48 {
