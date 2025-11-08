@@ -12,7 +12,9 @@
 
     function applyScale() {
         const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-        const scale = vw / DESIGN_WIDTH;
+        const MAX_WIDTH = 1024; // Không scale thêm nếu viewport > 1024px
+        const effectiveWidth = Math.min(vw, MAX_WIDTH);
+        const scale = effectiveWidth / DESIGN_WIDTH;
 
         const wrapper = document.querySelector('.ladi-wraper');
         if (!wrapper) return;
@@ -21,7 +23,7 @@
         document.documentElement.style.overflowX = 'hidden';
         document.body.style.overflowX = 'hidden';
 
-        // Cố định kích thước gốc và scale
+        // Cố định kích thước gốc và scale (giới hạn tối đa theo 1024px)
         wrapper.style.width = DESIGN_WIDTH + 'px';
         wrapper.style.transform = 'scale(' + scale + ')';
         
