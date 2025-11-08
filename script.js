@@ -369,12 +369,7 @@ function initForm() {
                 
                 // Hiển thị popup cảm ơn
                 if (popup) {
-                    popup.style.display = 'block';
-                    popup.style.opacity = '0';
-                    setTimeout(() => {
-                        popup.style.transition = 'opacity 0.3s';
-                        popup.style.opacity = '1';
-                    }, 10);
+                    openPopup('POPUP1');
                 }
                 
                 // Reset form
@@ -396,12 +391,7 @@ function initForm() {
             
             // Vẫn hiển thị popup cảm ơn
             if (popup) {
-                popup.style.display = 'block';
-                popup.style.opacity = '0';
-                setTimeout(() => {
-                    popup.style.transition = 'opacity 0.3s';
-                    popup.style.opacity = '1';
-                }, 10);
+                openPopup('POPUP1');
             }
             
             form.reset();
@@ -440,9 +430,50 @@ async function sendToGoogleSheets(data) {
 // ===================================
 // 4. POPUP QUẢN LÝ
 // ===================================
+
+// Hàm tính scale cho popup
+function calculatePopupScale() {
+    const POPUP_WIDTH = 450;
+    const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    let scale = viewportWidth / POPUP_WIDTH;
+    return Math.max(0.5, Math.min(2.5, scale));
+}
+
+// Hàm rescale popup khi resize
+function rescaleOpenPopups() {
+    const popup1 = document.getElementById('POPUP1');
+    const popup2 = document.getElementById('POPUP2');
+    
+    const scale = calculatePopupScale();
+    
+    if (popup1 && popup1.style.display === 'block') {
+        popup1.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    }
+    
+    if (popup2 && popup2.style.display === 'block') {
+        popup2.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    }
+}
+
+// Thêm resize listener cho popup
+let popupResizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(popupResizeTimer);
+    popupResizeTimer = setTimeout(rescaleOpenPopups, 100);
+});
+
 function closePopup(popupId) {
     const popup = document.getElementById(popupId);
     if (popup) {
+        // Restore body scroll
+        document.body.style.overflow = '';
+        
+        // Disable pointer events for popup section
+        const popupSection = document.getElementById('SECTION_POPUP');
+        if (popupSection) {
+            popupSection.style.pointerEvents = 'none';
+        }
+        
         popup.style.opacity = '0';
         setTimeout(() => {
             popup.style.display = 'none';
@@ -453,11 +484,44 @@ function closePopup(popupId) {
 function openPopup(popupId) {
     const popup = document.getElementById(popupId);
     if (popup) {
-        popup.style.display = 'block';
+        console.log('✅ Mở popup:', popupId);
+        
+        // Enable pointer events for popup section
+        const popupSection = document.getElementById('SECTION_POPUP');
+        if (popupSection) {
+            popupSection.style.pointerEvents = 'auto';
+        }
+        
+        // Block body scroll
+        document.body.style.overflow = 'hidden';
+        
+        // Tính toán scale giống wrapper chính - SCALE THEO CHIỀU NGANG
+        const scale = calculatePopupScale();
+        
+        // Hiện thị popup với inline styles mạnh
+        popup.style.cssText = `
+            display: block !important;
+            visibility: visible !important;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) scale(${scale}) !important;
+            z-index: 999999 !important;
+            width: 450px !important;
+            height: auto !important;
+            overflow: visible !important;
+            pointer-events: auto !important;
+            opacity: 0;
+        `;
+        
         setTimeout(() => {
-            popup.style.transition = 'opacity 0.3s';
+            popup.style.transition = 'opacity 0.3s, transform 0.3s';
             popup.style.opacity = '1';
         }, 10);
+        
+        console.log('Popup opened with scale:', scale);
+    } else {
+        console.error('❌ Không tìm thấy popup:', popupId);
     }
 }
 
@@ -467,9 +531,19 @@ function initGiftButton() {
     const popup2 = document.getElementById('POPUP2');
     
     if (giftButton) {
-        giftButton.addEventListener('click', () => {
+        // Đảm bảo nút visible và clickable
+        giftButton.style.visibility = 'visible';
+        giftButton.style.opacity = '1';
+        giftButton.style.cursor = 'pointer';
+        
+        giftButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🎁 Mở popup quà mừng cưới');
             openPopup('POPUP2');
         });
+    } else {
+        console.error('❌ Không tìm thấy BUTTON3');
     }
     
     // Đóng popup khi click vào background - CHỈ cho POPUP2 (popup quà mừng)
@@ -742,10 +816,39 @@ function highlightWeddingDate() {
 }
 
 // ===================================
-// KHỞI TẠO TẤT CẢ CHỨC NĂNG
+// DI CHUYỂN POPUP RA NGOÀI WRAPPER
+// ===================================
+function movePopupOutsideWrapper() {
+    const popupSection = document.getElementById('SECTION_POPUP');
+    if (popupSection) {
+        // Di chuyển SECTION_POPUP ra ngoài wrapper, append vào body
+        document.body.appendChild(popupSection);
+        console.log('✅ Đã di chuyển SECTION_POPUP ra ngoài wrapper');
+        
+        // Set inline styles để đảm bảo không bị scale
+        popupSection.style.cssText = `
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            transform: none !important;
+            z-index: 999999 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            pointer-events: none !important;
+        `;
+    }
+}
+
+// ===================================
+// KHỚI TẠO TẤT CẢ CHỨC NĂNG
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
     // console.log('🎊 Đang khởi tạo website...');
+    
+    // DI CHUYỂN POPUP RA NGOÀI WRAPPER TRƯỚC TIÊN!
+    movePopupOutsideWrapper();
     
     // Khởi tạo các chức năng
     initGallery();

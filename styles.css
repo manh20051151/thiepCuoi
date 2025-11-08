@@ -53,7 +53,7 @@ body {
   margin: 0 auto;
 }
 
-/* Fix popup không bị scale */
+/* Fix popup không bị scale - ƯU TIÊN CAO NHẤT */
 #SECTION_POPUP {
   position: fixed !important;
   top: 0 !important;
@@ -61,7 +61,9 @@ body {
   width: 100vw !important;
   height: 100vh !important;
   transform: none !important;
-  z-index: 99999 !important;
+  z-index: 999999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 #SECTION_POPUP .ladi-container {
@@ -2633,22 +2635,100 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
 }
 #SECTION_POPUP {
     height: 0px;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+    pointer-events: none;
 }
 
 #SECTION_POPUP .ladi-container {
-    z-index: 90000070;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transform: none !important;
+    max-width: none !important;
+    z-index: 999999 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 #SECTION_POPUP .ladi-container > .ladi-element {
-    z-index: 90000070;
-    position: fixed;
+    position: fixed !important;
     display: none;
+    pointer-events: auto;
+    z-index: 999999 !important;
+    transform: none !important;
+}
+
+/* Fix BUTTON3 - Luôn visible */
+#BUTTON3 {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+#BUTTON3:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 #POPUP1, #POPUP2 {
-    right: 0px;
-    bottom: 0px;
-    margin: auto;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 0 !important;
+    z-index: 999999 !important;
+}
+
+/* Responsive scaling - tự động scale theo màn hình */
+#POPUP1 {
+    width: 450px;
+    transform: translate(-50%, -50%) scale(1) !important;
+}
+
+#POPUP2 {
+    width: 450px;
+    transform: translate(-50%, -50%) scale(1) !important;
+}
+
+/* Scale cho mobile và tablet */
+@media (max-width: 480px) {
+    #POPUP1, #POPUP2 {
+        transform: translate(-50%, -50%) scale(0.85) !important;
+    }
+}
+
+@media (max-width: 400px) {
+    #POPUP1, #POPUP2 {
+        transform: translate(-50%, -50%) scale(0.75) !important;
+    }
+}
+
+/* Scale theo chiều cao */
+@media (max-height: 700px) {
+    #POPUP2 {
+        transform: translate(-50%, -50%) scale(0.9) !important;
+    }
+}
+
+@media (max-height: 600px) {
+    #POPUP2 {
+        transform: translate(-50%, -50%) scale(0.8) !important;
+    }
+}
+
+@media (max-height: 500px) {
+    #POPUP2 {
+        transform: translate(-50%, -50%) scale(0.65) !important;
+    }
 }
 #SECTION_POPUP .popup-close {
     position: absolute;
@@ -2664,17 +2744,90 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     background-image: url("data:image/svg+xml;utf8, %3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22%23000%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M23.4144%202.00015L2.00015%2023.4144L0.585938%2022.0002L22.0002%200.585938L23.4144%202.00015Z%22%3E%3C%2Fpath%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M2.00015%200.585938L23.4144%2022.0002L22.0002%2023.4144L0.585938%202.00015L2.00015%200.585938Z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 }
 .ladi-popup {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
 }
-#POPUP1 > .ladi-popup > .ladi-popup-background, #POPUP2 > .ladi-popup > .ladi-popup-background {
-    background-color: rgb(255, 255, 255);
+
+.ladi-popup > *:not(.ladi-popup-background) {
+    position: absolute;
+    z-index: 90000071;
+    visibility: visible !important;
+}
+
+/* Fix popup không bị scale bởi wrapper */
+#POPUP1, #POPUP2 {
+    transform: translate(-50%, -50%) scale(1) !important;
+}
+
+#POPUP1 .ladi-popup, #POPUP2 .ladi-popup {
+    position: relative;
+    border-radius: 10px;
+    overflow: visible;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    background: white;
+    z-index: 1000000 !important;
+    width: 100%;
+    height: 100%;
+}
+
+/* Fix tất cả elements trong popup không bị scale và visible */
+#POPUP1 *, #POPUP2 * {
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#POPUP1 .ladi-image, #POPUP2 .ladi-image {
+    transform: perspective(1000px) rotateX(180deg) !important;
+}
+
+/* Đảm bảo các elements trong popup hiện thị đúg */
+#POPUP1 #BOX24,
+#POPUP1 #IMAGE37,
+#POPUP1 #PARAGRAPH1,
+#POPUP1 #PARAGRAPH2,
+#POPUP2 #BOX25,
+#POPUP2 #IMAGE40,
+#POPUP2 #GROUP35,
+#POPUP2 #GROUP36,
+#POPUP2 #BOX26,
+#POPUP2 #IMAGE38,
+#POPUP2 #HEADLINE130,
+#POPUP2 #HEADLINE131,
+#POPUP2 #HEADLINE132 {
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+}
+
+/* Override animation hidden cho tất cả elements trong popup */
+#POPUP1 .ladi-animation-hidden,
+#POPUP2 .ladi-animation-hidden {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Popup close button */
+#SECTION_POPUP .popup-close {
+    z-index: 9000000090 !important;
+    visibility: visible !important;
 }
 .ladi-popup .ladi-popup-background {
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: transparent !important;
+    pointer-events: auto;
+    z-index: 999998 !important;
+    transform: none !important;
+}
+
+#POPUP1 > .ladi-popup > .ladi-popup-background, 
+#POPUP2 > .ladi-popup > .ladi-popup-background {
+    background-color: transparent !important;
 }
 #IMAGE37, #IMAGE40 {
     width: 450px;
@@ -2738,18 +2891,56 @@ input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" 
     text-align: center;
 }
 
+/* POPUP dimensions - cố định height */
 #POPUP1 {
-    width: 100%;
-    height: 441px;
-    top: 0;
-    left: 0;
+    height: 441px !important;
 }
 
 #POPUP2 {
-    width: 100%;
+    height: 585px !important;
+}
+
+/* Fix POPUP content layout - KHÔNG SCROLL - Áp dụng cho cả POPUP1 và POPUP2 */
+#POPUP1 .ladi-popup {
+    position: relative;
+    height: 441px;
+    overflow: visible;
+}
+
+#POPUP2 .ladi-popup {
+    position: relative;
     height: 585px;
-    top: 0;
-    left: 0;
+    overflow: visible;
+}
+
+/* Các elements trong popup giữ nguyên position absolute */
+#POPUP1 #BOX24,
+#POPUP1 #IMAGE37,
+#POPUP1 #PARAGRAPH1,
+#POPUP1 #PARAGRAPH2,
+#POPUP2 #BOX25,
+#POPUP2 #IMAGE40,
+#POPUP2 #GROUP35 {
+    position: absolute;
+}
+
+/* Force hiện thị groups và nội dung bên trong */
+#POPUP1 #IMAGE37,
+#POPUP1 #BOX24,
+#POPUP1 #PARAGRAPH1,
+#POPUP1 #PARAGRAPH2,
+#POPUP2 #GROUP35,
+#POPUP2 #GROUP36,
+#POPUP2 #GROUP36 * {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#POPUP1 .ladi-group,
+#POPUP2 .ladi-group {
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 #IMAGE40 {
